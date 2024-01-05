@@ -1,7 +1,8 @@
 <template>
   <img alt="Vue logo" src="https://media.giphy.com/media/YwGbYdq7KLZPG/giphy.gif">
-  <Counter title="Counter1"></Counter>
-  <Counter title="Counter2"/>
+  <Counter title="Counter1" :value="5" />
+  <!-- Escribo la directiva v:bind, cuando requiera que procese código js y en los valores númericos -->
+  <Counter title="Counter2" :value="calcularValor()" />
 </template>
 
 <script>
@@ -11,8 +12,13 @@ export default {
   name: 'App',
   components: {
     Counter
+  },
+  methods: {
+    calcularValor() {
+      return 5 + 5 * 180;
+    }
   }
-}
+};
 </script>
 
 <style>
