@@ -1,23 +1,29 @@
 <template>
-  <img alt="Vue logo" src="https://media.giphy.com/media/YwGbYdq7KLZPG/giphy.gif">
-  <Counter title="Counter1" :value="5" />
+  <img
+    alt="Vue logo"
+    src="https://media.giphy.com/media/YwGbYdq7KLZPG/giphy.gif"
+  />
+  <!-- <Counter title="Counter1" :value="5" />--->
   <!-- Escribo la directiva v:bind, cuando requiera que procese código js y en los valores númericos -->
-  <Counter title="Counter2" :value="calcularValor()" />
+  <!-- <Counter title="Counter2" :value="calcularValor()" />-->
+  <Calculator />
 </template>
 
 <script>
 /* Cuando importemos siempre ponemos el nombre del archivo. Es un estándar */
-import Counter from './components/Counter.vue'
+import Counter from "./components/Counter.vue";
+import Calculator from "./components/Calculator.vue";
 export default {
-  name: 'App',
+  name: "App",
   components: {
-    Counter
+    Counter,
+    Calculator,
   },
   methods: {
     calcularValor() {
       return 5 + 5 * 180;
-    }
-  }
+    },
+  },
 };
 </script>
 
