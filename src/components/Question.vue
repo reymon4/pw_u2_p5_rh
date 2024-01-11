@@ -1,14 +1,13 @@
 <template>
-  <img
-    src="https://yesno.wtf/assets/yes/8-2f93962e2ab24427df8589131da01a4d.gif"
-    alt="Cannot be visualized"
-  />
+  <img v-if="img != null" v-bind:src="img" alt="Cannot be visualized" />
   <div class="dark"></div>
   <div class="container">
     <input v-model="question" type="text" />
     <p>Remember to finish the interrogation sign (?)</p>
-    <h2>{{ question }}</h2>
-    <h1>Yes, NO...</h1>
+    <div v-if="validQuestion == true">
+      <h2>{{ question }}</h2>
+      <h1>{{ answer }}</h1>
+    </div>
   </div>
 </template>
 
@@ -16,25 +15,36 @@
 export default {
   data() {
     return {
-      question: "I'll be millionarie",
+      question: null,
+      answer: null,
+      img: null,
+      validQuestion: false,
     };
   },
   watch: {
     question(value, oldValue) {
+      this.validQuestion = false;
       console.log(value);
       console.log(oldValue);
       if (!value.includes("?")) return;
       //Consumo de API
       this.consumirAPI();
+      this.validQuestion = true;
     },
   },
   methods: {
     async consumirAPI() {
+      this.answer = "Pensando.";
+      this.answer = "Pensando..";
+      this.answer = "Pensando...";
       const { answer, image } = await fetch("https://yesno.wtf/api").then((r) =>
-        r.json());
+        r.json()
+      );
 
       console.log(answer);
       console.log(image);
+      this.answer = answer === "yes" ? "Sí" : "No";
+      this.img = image;
     },
   },
 };
