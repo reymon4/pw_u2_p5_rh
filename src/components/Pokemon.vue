@@ -1,24 +1,18 @@
 <template>
   <div class="container">
     <h2>Pokemon API</h2>
-    <p>Pokemon id:</p>
-    <input type="text" v-model="id" />
+    <p class="id">ID</p>
+    <input @keypress="calcularId" type="text" id="pokemonId" v-model="id" />
 
-    <div v-if="consulta" class="tabla">
-      <table>
-        <tr>
-          <td><label>Nombre:</label></td>
-          <td>{{ name }}</td>
-        </tr>
-        <tr>
-          <td><label>Weight:</label></td>
-          <td>{{ weight }}</td>
-        </tr>
-        <tr>
-          <td><label>Experience:</label></td>
-          <td>{{ experience }}</td>
-        </tr>
-      </table>
+    <div v-if="consulta == true" class="tabla">
+      <label for="">NAME</label>
+      <p>{{ name }}</p>
+
+      <label for="">WEIGHT</label>
+      <p>{{ weight }}</p>
+
+      <label for="">EXPERIENCE</label>
+      <p>{{ experience }}</p>
     </div>
   </div>
 </template>
@@ -36,16 +30,20 @@ export default {
   },
   watch: {
     id(value, oldValue) {
-      this.consulta = false;
       console.log(value);
       console.log(oldValue);
-      if (!value) return;
-      // Consumo de API
-      this.consumirAPI();
-      this.consulta = true;
     },
   },
   methods: {
+    calcularId(event) {
+      this.consulta = false;
+      /* console.log("presionando...");
+      console.log(event.charCode); */
+      if (event.charCode === 13 && this.id) {
+        this.consumirAPI();
+        this.consulta = true;
+      }
+    },
     async consumirAPI() {
       this.answer = "Pensando.";
       this.answer = "Pensando..";
@@ -67,22 +65,52 @@ export default {
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  position: relative;
+}
+input:focus {
+  outline: none;
+}
+input {
+  border-radius: 10px;
+  width:300px;
+  height: 30px;
+  text-align: center;
+  font-size: 25px;
+  font-style: bold;
 }
 .tabla {
-  width: 200px;
-  height: 80px;
-  background: #7db1ea;
+  display: grid;
+  grid-template-rows: repeat(6, 75px);
+  width:300px;
+  height: 100%;
   border-radius: 15px;
-  padding: 20px 20px;
-  box-shadow: 0px 0px 20px 10px rgb(99, 221, 230);
   margin-top: 30px;
   align-items: center;
 }
-h1,
-h2 {
+p {
+  font-size: 25px;
+  font-style: bold; 
+  font-family: Arial, Helvetica, sans-serif;
+  border-radius: 15px;
+  background: #F2C6BD;
+  height: 40px;
+  line-height: 40px;
+  box-sizing: content-box;
+  color:white;
+}
+label{
   color: white;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-style:oblique;
+  font-size: 20px;
+  background: #DABDF2;
+  border-radius: 15px;
+  height: 40px;
+  line-height: 40px;
+
 }
-h2 {
-  margin-top: 50px;
+.id{
+ background: none;
 }
+
 </style>

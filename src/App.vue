@@ -1,12 +1,13 @@
 <template>
   <img
     alt="Vue logo"
-    src="https://media.giphy.com/media/YwGbYdq7KLZPG/giphy.gif"
+    src="https://media2.giphy.com/media/Sd9XrDFZZ0Q0OXAdJM/giphy.gif?cid=ecf05e47w43qzv6sua9kx1o3qlxn7quq7u580feiymox3khk&ep=v1_stickers_search&rid=giphy.gif&ct=s"
+    
   />
   <!-- <Counter title="Counter1" :value="5" />--->
   <!-- Escribo la directiva v:bind, cuando requiera que procese código js y en los valores númericos -->
   <!-- <Counter title="Counter2" :value="calcularValor()" />-->
-  <Question/>
+  <Pokemon/>
 </template>
 
 <script>
@@ -17,7 +18,7 @@ import Question from "./components/Question.vue";
 export default {
   name: "App",
   components: {
-   Question
+    Pokemon
   },
   methods: {
     calcularValor() {
