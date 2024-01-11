@@ -6,17 +6,18 @@
   <!-- <Counter title="Counter1" :value="5" />--->
   <!-- Escribo la directiva v:bind, cuando requiera que procese código js y en los valores númericos -->
   <!-- <Counter title="Counter2" :value="calcularValor()" />-->
-  <Pokemon/>
+  <Question/>
 </template>
 
 <script>
 /* Cuando importemos siempre ponemos el nombre del archivo. Es un estándar */
 
 import Pokemon from "./components/Pokemon.vue";
+import Question from "./components/Question.vue";
 export default {
   name: "App",
   components: {
-    Pokemon
+   Question
   },
   methods: {
     calcularValor() {
