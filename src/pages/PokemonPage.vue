@@ -7,15 +7,27 @@
 <script>
 import PokemonImage from "../components/PokemonImage.vue";
 import PokemonOptions from "@/components/PokemonOptions.vue";
-import getPokemonIdFachada from "../helpers/pokemonHelper"
+import getPokemons from "../helpers/pokemonHelper"
 
-getPokemonIdFachada()
+getPokemons()
 export default {
   name: "PokemonPage",
   components: {
     PokemonImage,
     PokemonOptions,
   },
+  mounted(){
+    console.log("Se montó el component PokemonPage")
+    this.cargaInicial()
+    
+  },
+  methods:{
+    async cargaInicial(){
+      const arregloPokemons = await getPokemons()
+    console.log("From component")
+    console.log(arregloPokemons)
+    }
+  }
 };
 </script>
 
