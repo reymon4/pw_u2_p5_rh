@@ -1,15 +1,12 @@
 <template>
   <div class="imageContainer">
     <img
+      v-if="!showPokemon"
       class="hide"
       :src="getImage"
       alt="Cannot access to resource"
     />
-    <img
-      :src="getImage"
-      alt="Cannot access to resource"
-      v-if="showPokemon"
-    />
+    <img v-if="showPokemon" :src="getImage" alt="Cannot access to resource" />
   </div>
 </template>
 
@@ -20,11 +17,11 @@ export default {
       type: Number,
       required: true,
     },
-    showPokemon:{
-      type:Boolean,
-      required:true,
-      default:false,
-    }
+    showPokemon: {
+      type: Boolean,
+      required: true,
+      default: false,
+    },
   },
   computed: {
     getImage() {

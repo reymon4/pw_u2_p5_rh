@@ -3,15 +3,23 @@
   <div class="optionsContainer">
     <!-- unorder list es para listaS -->
     <ul>
-      <li>1</li>
-      <li>2</li>
-      <li>3</li>
-      <li>4</li>
+      <!--cada vez que haga click se emite una señal debido al $emit -->
+      <li v-for="n in pokemons" :key="n.id" @click="$emit('slected', n.id)">
+        {{ n.name }}
+      </li>
     </ul>
   </div>
 </template>
 <script>
-export default {};
+export default {
+  props:{
+    pokemons:{
+      type:Array,
+      required: true,
+    }
+  },
+  
+};
 </script>
 
 <style>
